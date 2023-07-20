@@ -12,7 +12,11 @@ require('./database/conn')
 const fileUpload = require('express-fileupload')
 const cookieParser = require('cookie-parser')
     // app.use(express.urlencoded({ limit: '50mb', extended: true }))
-app.use(cors())
+app.use(cors(
+    bodyParser.urlencoded({
+        extended:false
+    })
+))
 app.use(express.json({ limit: '50mb', extended: true }));
 app.use(fileUpload())
 app.use(cookieParser())
