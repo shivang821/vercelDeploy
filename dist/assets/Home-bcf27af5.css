@@ -1,0 +1,1 @@
+.home{width:100%;color:var(--text1);height:auto;min-height:100%}.home>div{box-sizing:border-box;height:50rem;width:100%}@media screen and (max-width:767px){.home{padding-top:3rem}.home>div:first-child{height:3rem;width:100%;background-color:var(--background2);border-bottom:1px solid var(--border);margin:0}}.topBar{height:3rem;width:100%;position:fixed;top:0;left:0}
