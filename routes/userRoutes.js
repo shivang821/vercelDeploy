@@ -8,7 +8,6 @@ router.route('/signup').post(signUpUser)
 async function signUpUser(req, res) {
     try {
         const { email, name, password, username } = req.body
-        console.log(username, email);
         let user = await User.findOne({ username })
         if (user) { return res.status(400).json({ sucess: false, message: "username already exist" }) }
 
