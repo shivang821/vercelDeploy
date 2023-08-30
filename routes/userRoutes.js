@@ -42,7 +42,7 @@ router.route("/me").get(isAuthenticate, getDetails)
 
 async function getDetails(req, res) {
     try {
-        const user = await User.findOne({ _id: req.user.id });
+        const user = await User.findOne({ _id: req.user.id }).select({"name":1,"profile":1,"username":1,"phoneNo":1,"email":1});
         res.status(200).json({ success: true, user })
     } catch (error) {
         console.log(error);

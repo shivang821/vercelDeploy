@@ -32,6 +32,41 @@ const userSchema = mongoose.Schema({
 		url: {
 			type: String
 		}
+	},
+	followers: [
+		{
+			user: {
+				type: mongoose.Schema.ObjectId,
+				ref: 'User'
+			}
+		}
+	],
+	following: [
+		{
+			user: {
+				type: mongoose.Schema.ObjectId,
+				ref: 'User'
+			}
+		}
+	],
+	createdAt:{
+		type:Date,
+		default:Date.now
+	},
+	isPublic:{
+		type:Boolean,
+		default:false
+	},
+	dailyLimit:{
+		type:Number,
+		default:null
+	},
+	screenTime:{
+		type:Number
+	},
+	isDailyLimitSet:{
+		type:Boolean,
+		default:false
 	}
 });
 userSchema.pre('save', async function(next) {
