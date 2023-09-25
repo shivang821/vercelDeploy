@@ -21,6 +21,7 @@ async function uploadNewPost(req, res) {
                 posts.push(postObj);
             }
         const post=await Post.create({posts,createdBy:req.user._id,postType,isPublic:req.user.isPublic})
+        await User.findByIdAndUpdate(req.user._id,{numberOfPosts:req.user.numberOfPosts+1});
         res.status(200).json({success:true})
     } catch (error) {
         console.log(error);
@@ -35,10 +36,8 @@ async function sendReels(req,res){
         let skip=(page-1)*limit
         const totalResult=await Post.find({postType:"reel"}).count();
         const reels=await Post.find({postType:"reel"}).skip(skip).limit(limit).populate('createdBy');
-        // console.log(reels.length);
         let totalResultSend=((page-1)*limit)+reels.length;
         let hasMore=totalResultSend<totalResult
-        console.log(hasMore);
         res.status(200).json({reels,totalResult,hasMore})
     } catch (error) {
         console.log(error);
@@ -52,7 +51,6 @@ async function uploadData(req,res){
         const file=req.file;
         const fileUri=getDataUri(file);
         const myCloud=await cloudinary.v2.uploader.upload(fileUri.content,{resource_type:'auto'});
-        console.log(myCloud.secure_url);
         res.status(200).json({success:'true'})
     } catch (error) {
         console.log(error);

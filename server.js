@@ -16,7 +16,6 @@ require("./database/conn");
 
 app.use(status());
 const totalCpus = os.cpus().length;
-console.log(totalCpus);
 if (cluster.isPrimary) {
   for (let i = 0; i < totalCpus; i++) {
     cluster.fork();
