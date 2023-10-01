@@ -30,13 +30,13 @@ if (cluster.isPrimary) {
     api_key: process.env.CLOUDINARY_KEY,
     api_secret: process.env.CLOUDINARY_SECRET,
   });
-  app.use(cors());
+
   app.use(express.json({ extended: true }));
   app.use(cookieParser());
   app.use(userRoute);
   app.use(postRoute);
 
-  app.use(express.static("dist"));
+  // app.use(express.static("dist"));
   app.listen(4000, (req, res) => {
     console.log("server running on port 4000");
   });
