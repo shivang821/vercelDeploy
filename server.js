@@ -47,3 +47,6 @@ app.get('*', (req, res) => {
     console.log("server running on port 4000");
   });
 }
+
+
+module.exports=app;
