@@ -36,7 +36,7 @@ if (cluster.isPrimary) {
   app.use(userRoute);
   app.use(postRoute);
 
-  // app.use(express.static("dist"));
+  app.use(express.static("dist"));
   app.listen(4000, (req, res) => {
     console.log("server running on port 4000");
   });
