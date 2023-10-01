@@ -3,7 +3,7 @@ dotenv.config({ path: "./config.env" });
 const cors = require("cors");
 const express = require("express");
 const app = express();
-
+const path =require('path')
 const os = require("os");
 const cluster = require("cluster");
 const status = require("express-status-monitor");
@@ -35,8 +35,14 @@ if (cluster.isPrimary) {
   app.use(cookieParser());
   app.use(userRoute);
   app.use(postRoute);
+  app.use(express.static('dist'));
 
-  app.use(express.static("dist"));
+// Your API routes go here...
+
+// Handles any requests that don't match the ones above
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/dist/index.html'));
+});
   app.listen(4000, (req, res) => {
     console.log("server running on port 4000");
   });
