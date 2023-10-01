@@ -42,7 +42,9 @@ if (cluster.isPrimary) {
   // app.get("/#/*", function (req, res) {
   //   res.sendFile(path.join(__dirname, "./dist/index.html"));
   // });
-  app.use('/', express.static(path.join(__dirname, 'dist')));
+  app.use('/',function(req,res){
+    res.send('hello')
+  });
   app.listen(4000, (req, res) => {
     console.log("server running on port 4000");
   });
